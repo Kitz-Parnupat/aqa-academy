@@ -1,0 +1,76 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
+<link rel="import" href="../../../../bower_components/aqa-vaadin-grid/aqa-vaadin-grid.html">
+<link rel="import" href="../../../../bower_components/aqa-styles/aqa-styles.html">
+<link rel="import" href="../../../../bower_components/aqa-tooltip/aqa-tooltip.html">
+<link rel="import" href="../../../../bower_components/iron-icons/test/iron-icons.html">
+<link rel="import" href="../../../../bower_components/aqa-icons/aqa-icons.html">
+<link rel="import" href="../../../../bower_components/paper-icon-button/paper-icon-button.html">
+<dom-module id="page-muti-list">
+    <template>
+        <style include="aqa-styles"></style>
+        <vaadin-grid id="grid" aria-label="Basic Binding Example" items="[[list]]">
+            <vaadin-grid-column flex-grow="0">
+                <template class="header">
+                    <div style="text-align:center">
+                        ลำดับที่
+                    </div>
+                </template>
+                <template>
+                    <div style="text-align:center">
+                        [[count(index)]]
+                    </div>
+                </template>
+            </vaadin-grid-column>
+            <template is="dom-repeat" items="[[colunm]]" as="col" index-as="count">
+                <vaadin-grid-column>
+                    <template class="header">[[col.label]]</template>
+                    <template>
+                        <div>
+                            [[combileData(colunm,count,item)]]
+                        </div>
+
+                    </template>
+                </vaadin-grid-column>
+            </template>
+            <!-- <template is="dom-if" if="[[active]]"> -->
+            <vaadin-grid-column width="150px" flex-grow="0">
+                <template class="header">เครื่องมือ</template>
+                <template>
+                    <div style="text-align: center;">
+                        <aqa-tooltip label="ดูรายละเอียดทั้งหมด">
+                            <paper-icon-button class="btn-edit" icon="visibility" on-click="openDialog"></paper-icon-button>
+                        </aqa-tooltip>
+                        <aqa-tooltip label="แก้ไขข้อมูล">
+                            <paper-icon-button class="btn-edit" icon="create" on-click="editDialog"></paper-icon-button>
+                        </aqa-tooltip>
+                        <aqa-tooltip label="ลบ">
+                            <paper-icon-button class="btn-edit" icon="aqa-tool:bin" on-click="confirmDelete"></paper-icon-button>
+                        </aqa-tooltip>
+                    </div>
+                </template>
+            </vaadin-grid-column>
+            <!-- </template> -->
+        </vaadin-grid>
+
+
+    </template>
+
+    <script>
+
+        class PageMutiList extends Polymer.Element {
+
+            static get is() {
+                return 'page-muti-list';
+            }
+
+            static get properties() {
+                return {
+
+                };
+            }
+        }
+
+        window.customElements.define(PageMutiList.is, PageMutiList);
+    </script>
+</dom-module>

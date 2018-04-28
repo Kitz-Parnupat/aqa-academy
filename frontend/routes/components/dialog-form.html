@@ -1,0 +1,135 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../../bower_components/aqa-form/aqa-input.html">
+<link rel="import" href="../../../../bower_components/aqa-button/aqa-button.html">
+<link rel="import" href="../../../../bower_components/aqa-styles/aqa-styles.html">
+<link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../../../bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../../../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../redux/common-redux.html">
+
+<dom-module id="dialog-form" topic="จัดการข้อมูล">
+    <template>
+        <style include="aqa-styles">
+            paper-item {
+                width: 100%;
+                box-sizing: border-box;
+                min-width: 50px;
+                --paper-item-min-height: 30px;
+            }
+
+            paper-item:hover {
+                background-color: #f3f7f9;
+            }
+
+            paper-listbox {
+                padding: 0;
+                border-radius: 10px;
+            }
+        </style>
+        <div class="modal-body">
+
+
+            <div class="row end-xs">
+                <div class="col-xs-12">
+                    <template is="dom-if" if="[[active]]">
+                        <paper-icon-button icon="create" on-click="activeForm"></paper-icon-button>
+                        <paper-menu-button no-overlap horizontal-align="right" no-animations>
+                            <paper-icon-button icon="print" slot="dropdown-trigger"></paper-icon-button>
+                            <paper-listbox slot="dropdown-content">
+                                <paper-item>Word</paper-item>
+                                <paper-item>PDF</paper-item>
+                                <paper-item>Excel</paper-item>
+                            </paper-listbox>
+                        </paper-menu-button>
+
+                    </template>
+                </div>
+            </div>
+            <div id="form">
+                <template is="dom-repeat" items="[[field]]">
+                    <!-- <div class="col-xs-12 col-sm-6 col-xs-4" style="margin-bottom:0.5rem"> -->
+                        <aqa-input label="[[item.label]]" id="[[item.path]]" value="[[combineForm(item.path,form)]]" 
+                        required disabled="[[active]]"></aqa-input>
+                    <!-- </div> -->
+                    <br>
+                </template>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <aqa-button type="success" on-click="getForm">บันทึก</aqa-button>
+            <aqa-button type="default-outline" on-click="closeDialog">ยกเลิก</aqa-button>
+        </div>
+
+    </template>
+
+    <script>
+        class DialogForm extends ReduxMixin(Polymer.Element) {
+
+            static get is() {
+                return 'dialog-form';
+            }
+
+            static get properties() {
+                return {
+                    form: {
+                        type: Object,
+                        computed: 'combineData(select,data)'
+                    },
+                    data:{
+                        type: Object,
+                        statePath:'commonData'
+                    },
+                    active: {
+                        type: Boolean,
+                        value: false
+                    },
+                    select: {
+                        type:String,
+                        observer:'selectForm'
+                    },
+                    field: {
+                        type: Array,
+                        value: []
+                    }
+                };
+            }
+            activeForm() {
+                this.active = false;
+            }
+            combineData(select,data){
+                if(select && data){
+                    return data[select]
+                }
+            }
+            nylonDialogActive(val) {
+                this.active = val.active,
+                this.field = val.field
+                this.select = val.select
+            }
+            getForm(){
+                // console.log(this.$.form.children);
+                var elForm = this.$.form.children;
+                var form = {}
+                for (let index = 0; index < elForm.length; index++) {
+                    if(elForm[index].getAttribute('id')){
+                        var key = elForm[index].id;
+                        var value = elForm[index].value
+                        form[key] = value;
+                    }
+                }
+                console.log(form)
+            }
+            combineForm(path,list){
+                return list[path]
+            }
+            closeDialog() {
+                Nylon.dialog.close()
+            }
+        }
+
+        window.customElements.define(DialogForm.is, DialogForm);
+    </script>
+</dom-module>

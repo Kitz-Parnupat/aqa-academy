@@ -1,0 +1,64 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../../bower_components/aqa-styles/aqa-styles.html">
+<link rel="import" href="../../../../bower_components/iron-image/iron-image.html">
+<dom-module id="page-card">
+    <template>
+        <style include="aqa-styles">
+            .card{
+                background-color: white;
+                height: 210px;
+                width: 200px;
+                border-radius: 4px;
+                padding: 0.2rem;
+                border:1px solid transparent;
+            }
+            .card:hover{
+                cursor: pointer;
+            }
+            .card-img{
+                width: 200px;
+                height: 180px;
+                box-sizing: border-box;
+                /* background-color: #ddd; */
+            }
+            .card-title{
+                margin: auto;
+                text-align: center;
+                font-size: 1rem;
+                height: 40px;
+                width: 200px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        </style>
+        <div class="card">
+            <div class="card-img">
+                <iron-image style="width:200px; height:180px;" sizing="contain" src="https://www.polymer-project.org/images/logos/p-logo.png"></iron-image>
+            </div>
+            <div class="card-title">
+                [[title]]
+            </div>
+        </div>
+        
+
+    </template>
+
+    <script>
+     
+        class PageCard extends Polymer.Element {
+          
+            static get is() {
+                return 'page-card';
+            }
+
+            static get properties() {
+                return {
+                    title:String
+                };
+            }
+        }
+
+        window.customElements.define(PageCard.is, PageCard);
+    </script>
+</dom-module>
