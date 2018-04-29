@@ -1,0 +1,30 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/aqa-styles/aqa-styles.html">
+<dom-module id="route-basic" topic="ข้อมูลพื้นฐาน"  parent="route-home">
+    <template>
+        <style include="aqa-styles">
+            
+        </style>
+        <div class="page-container">
+            RouteฺBasic
+        </div>
+    </template>
+
+    <script>
+      
+        class RouteฺBasic extends Polymer.Element {
+           
+            static get is() {
+                return 'route-basic';
+            }
+
+            static get properties() {
+                return {
+                    
+                };
+            }
+        }
+
+        window.customElements.define(RouteฺBasic.is, RouteฺBasic);
+    </script>
+</dom-module>

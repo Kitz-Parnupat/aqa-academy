@@ -1,0 +1,30 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../../bower_components/aqa-styles/aqa-styles.html">
+<dom-module id="route-cds" topic="CDS" parent="route-home">
+    <template>
+        <style include="aqa-styles">
+            
+        </style>
+        <div class="page-container">
+            RouteCds
+        </div>
+    </template>
+
+    <script>
+      
+        class RouteCds extends Polymer.Element {
+           
+            static get is() {
+                return 'route-cds';
+            }
+
+            static get properties() {
+                return {
+                    
+                };
+            }
+        }
+
+        window.customElements.define(RouteCds.is, RouteCds);
+    </script>
+</dom-module>

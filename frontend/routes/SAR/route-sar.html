@@ -1,0 +1,30 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../../bower_components/aqa-styles/aqa-styles.html">
+<dom-module id="route-sar" topic="SAR"  parent="route-home">
+    <template>
+        <style include="aqa-styles">
+            
+        </style>
+        <div class="page-container">
+            RouteSar
+        </div>
+    </template>
+
+    <script>
+      
+        class RouteSar extends Polymer.Element {
+           
+            static get is() {
+                return 'route-sar';
+            }
+
+            static get properties() {
+                return {
+                    
+                };
+            }
+        }
+
+        window.customElements.define(RouteSar.is, RouteSar);
+    </script>
+</dom-module>

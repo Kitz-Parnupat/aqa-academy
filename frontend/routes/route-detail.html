@@ -1,0 +1,30 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/aqa-styles/aqa-styles.html">
+<dom-module id="route-detail" topic="รายละเอียดสถานศึกษา" parent="route-home">
+    <template>
+        <style include="aqa-styles">
+            
+        </style>
+        <div class="page-container">
+            RouteฺDetail
+        </div>
+    </template>
+
+    <script>
+      
+        class RouteฺDetail extends Polymer.Element {
+           
+            static get is() {
+                return 'route-detail';
+            }
+
+            static get properties() {
+                return {
+                    
+                };
+            }
+        }
+
+        window.customElements.define(RouteฺDetail.is, RouteฺDetail);
+    </script>
+</dom-module>

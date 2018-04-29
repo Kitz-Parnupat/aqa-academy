@@ -1,0 +1,30 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/aqa-styles/aqa-styles.html">
+<dom-module id="route-manager" topic="ข้อมูลผู้บริหาร"  parent="route-home">
+    <template>
+        <style include="aqa-styles">
+            
+        </style>
+        <div class="page-container">
+            RouteManager
+        </div>
+    </template>
+
+    <script>
+      
+        class RouteManager extends Polymer.Element {
+           
+            static get is() {
+                return 'route-manager';
+            }
+
+            static get properties() {
+                return {
+                    
+                };
+            }
+        }
+
+        window.customElements.define(RouteManager.is, RouteManager);
+    </script>
+</dom-module>
